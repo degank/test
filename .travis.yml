@@ -5,3 +5,12 @@ services:
 scripts:
   - docker build -t degank/node .
   - docker images degank/node
+
+before_deploy:
+  - docker login -u degank -p dkDocker!m@n
+
+deploy:
+  provider: script
+  script: docker push degank/node
+  on:
+    branch: master
